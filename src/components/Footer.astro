@@ -1,0 +1,38 @@
+---
+import Social from "./Social.astro";
+
+const socialNetworks = [
+    {
+        name: "github",
+        url: "https://github.com/v1adhope",
+    },
+    {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/v1adhope",
+    },
+    {
+        name: "Telegram",
+        url: "https://t.me/v1adhope",
+    },
+];
+---
+
+<style>
+    footer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+
+<footer>
+    <p>
+        Me on social networks:{" "}
+        {socialNetworks.map(({ name, url }, idx) => (
+            <>
+                <Social name={name} url={url} />
+                {idx < socialNetworks.length - 1 ? ", " : "!"}
+            </>
+        ))}
+    </p>
+</footer>
