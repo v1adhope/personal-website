@@ -2,75 +2,81 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About Me";
-
-const identity = {
-    firstName: "Sarah",
-    country: "Canada",
-    occupation: "Technical Writer",
-    hobbies: ["photography", "birdwatching", "baseball"],
-};
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
-
-const happy = true;
-const finished = true;
-const goal = 3;
-
-const skillColor = "crimson";
-const fontWeight = "bold";
-const textCase = "uppercase";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <style is:global define:vars={{ skillColor, fontWeight, textCase }}>
-        h1 {
-            color: purple;
-            font-size: 4rem;
-        }
-        .skill {
-            color: var(--skillColor);
-            font-weight: var(--fontWeight);
-            text-transform: var(--textCase);
-        }
-    </style>
-
-    <h2>... and my new Astro site!</h2>
+    <p>Hey, I'm Vla. Welcome to my corner of the internet.</p>
     <p>
-        I am working through Astro's introductory tutorial. This is the second
-        page on my website, and it's the first one I built myself!
+        I'm a full-time software engineer with a curiosity that goes well beyond
+        writing code. My interests range from politics and economics to
+        engineering, financial markets, and understanding how the world works.
     </p>
     <p>
-        This site will update as I complete more of the tutorial, so keep
-        checking back and see how my journey is going!
+        This website is my personal space on the internet — a place where I share
+        a little about myself, document things I find interesting, and occasionally
+        put my thoughts into words.
     </p>
 
-    <p>Here are a few facts about me:</p>
+    <h2>What I Do</h2>
+
+    <h3>Software Engineering</h3>
+    <p>
+        I work full-time as a software engineer. Technology is a big part of my
+        life, but I prefer not to limit my interests to just one field.
+    </p>
+
+    <h3>Markets &amp; Investing</h3>
+    <p>
+        I manage my own portfolio across stocks, indices, and cryptocurrencies.
+        From time to time, I also trade using Inner Circle Trader (ICT) concepts.
+    </p>
+    <p>
+        I'm interested in how markets behave, what drives economic decisions, and
+        the psychology behind price movements.
+    </p>
+
+    <h3>Manga &amp; Scanlation</h3>
+    <p>
+        Outside of engineering and financial markets, I contribute to MangaDex as
+        a solo scanlator under an anonymous account.
+    </p>
+    <p>
+        I mainly work on English translations, occasionally Russian ones. It's a
+        creative side project that lets me contribute to the manga community.
+    </p>
+
+    <h2>A Bit About My Background</h2>
+    <p>I was born in Russia, but my experience isn't limited to one country.</p>
+    <p>
+        Over the years, I've spent significant time living in different places,
+        particularly:
+    </p>
     <ul>
-        <li>My name is {identity.firstName}.</li>
-        <li>
-            I live in {identity.country} and I work as a {identity.occupation}.
-        </li>
-        {identity.hobbies.length >= 2 && (
-            <li>
-                Two of my hobbies are: {identity.hobbies[0]} and{" "}
-                {identity.hobbies[1]}.
-            </li>
-        )}
+        <li>Vietnam</li>
+        <li>Georgia</li>
     </ul>
-    <p>My skills are:</p>
-    <ul>
-        {skills.map((skill) => (
-            <li class="skill">{skill}</li>
-        ))}
-    </ul>
+    <p>
+        Living in these countries has given me firsthand experience with their
+        local cultures, everyday life, and how things work beyond a tourist's
+        perspective.
+    </p>
 
-    {happy && <p>I am happy to be learning Astro!</p>}
+    <h2>Why This Website Exists</h2>
+    <p>No grand mission.</p>
+    <p>
+        Just a place to share who I am, what I'm working on, what I've learned,
+        and whatever happens to catch my attention.
+    </p>
+    <p>
+        Some topics might be technical. Others might involve economics, politics,
+        markets, or something completely unrelated.
+    </p>
+    <p>I don't claim to know everything, and I don't intend to.</p>
+    <p><strong>I'm simply curious about how things work.</strong></p>
+    <p>
+        If something here catches your interest, feel free to stick around and
+        explore.
+    </p>
 
-    {finished && <p>I finished this tutorial!</p>}
-
-    {goal === 3 ? (
-        <p>My goal is to finish in 3 days.</p>
-    ) : (
-        <p>My goal is not 3 days.</p>
-    )}
+    <p><strong>Welcome to my little piece of the internet.</strong></p>
 </BaseLayout>
