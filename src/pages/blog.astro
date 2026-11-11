@@ -4,11 +4,11 @@ import BlogPost from "../components/BlogPost.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
-const pageTitle = "My Astro Learning Blog";
+const pageTitle = "Blog";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <p>This is where I will post about my journey learning Astro.</p>
+    <p>Thoughts, notes, and things I learn along the way.</p>
     <ul>
         {allPosts.map((post) => (
             <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
