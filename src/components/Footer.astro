@@ -1,7 +1,7 @@
 ---
 import Social from "./Social.astro";
 
-const socialNetworks = [
+const links = [
     {
         name: "github",
         url: "https://github.com/v1adhope",
@@ -13,6 +13,14 @@ const socialNetworks = [
     {
         name: "Telegram",
         url: "https://t.me/v1adhope",
+    },
+    {
+        name: "RSS",
+        url: "/rss.xml",
+    },
+    {
+        name: "Email",
+        url: "mailto:vladislavgardner@proton.me",
     },
 ];
 ---
@@ -27,11 +35,10 @@ const socialNetworks = [
 
 <footer>
     <p>
-        Me on social networks:{" "}
-        {socialNetworks.map(({ name, url }, idx) => (
+        {links.map(({ name, url }, idx) => (
             <>
                 <Social name={name} url={url} />
-                {idx < socialNetworks.length - 1 ? ", " : "!"}
+                {idx < links.length - 1 ? ", " : ""}
             </>
         ))}
     </p>
