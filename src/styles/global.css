@@ -1,3 +1,16 @@
+* {
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 html {
     color-scheme: light;
     background-color: #f1f5f9;
@@ -10,10 +23,6 @@ body {
     max-width: 80ch;
     padding: 1rem;
     line-height: 1.5;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 h1 {
