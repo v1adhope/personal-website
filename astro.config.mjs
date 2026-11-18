@@ -7,5 +7,6 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   devToolbar: { enabled: false },
   adapter: cloudflare(),
+  session: false,
   site: "https://vladislavgardner.vladislavgardner.workers.dev/",
 });
