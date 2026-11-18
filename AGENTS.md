@@ -1,5 +1,8 @@
 ## Development
 
+- Use Astro components; do not add UI frameworks.
+- Prefer native HTML and CSS features; use JavaScript only for behavior they cannot provide.
+
 When starting the dev server, use background mode:
 
 ```
