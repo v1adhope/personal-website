@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import BlogPost from "../../components/BlogPost.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import PostList from "../../components/PostList.astro";
+import TextLink from "../../components/TextLink.astro";
+import { getTagLabel, newestFirst } from "../../lib/posts";
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("blog");
@@ -22,13 +25,14 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const label = getTagLabel(tag ?? "Interest");
 ---
 
-<BaseLayout pageTitle={tag}>
-    <p>Posts tagged with {tag}</p>
-    <ul>
-        {posts.map((post) => (
-            <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
-        ))}
-    </ul>
+<BaseLayout pageTitle={label}>
+    <PageIntro eyebrow="Follow a thread" title={label} count={posts.length} description={`Thoughts and notes on ${label}.`}>
+        <TextLink href="/tags/">All interests</TextLink>
+    </PageIntro>
+    <section class="section" aria-label={`Posts about ${tag}`}>
+        <PostList posts={newestFirst(posts)} />
+    </section>
 </BaseLayout>

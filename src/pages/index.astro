@@ -1,66 +1,41 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-
-const pageTitle = "Home Page";
-const posts = (await getCollection("blog"))
-    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-    .slice(0, 5);
-const dateFormatter = new Intl.DateTimeFormat("en", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-});
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostList from "../components/PostList.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import TagLink from "../components/TagLink.astro";
+import TextLink from "../components/TextLink.astro";
+import { getTagCounts, newestFirst } from "../lib/posts";
+const posts = newestFirst(await getCollection("blog"));
+const interests = getTagCounts(posts);
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <p>
-        I'm Vla, a software engineer. I write about what I'm learning, working on,
-        and thinking about.
-    </p>
-    <p><a href="/about/">More about me</a></p>
-
-    <section aria-labelledby="posts">
-        <h2 id="posts">Latest posts</h2>
-        <ul class="posts" role="list">
-            {posts.map((post) => (
-                <li>
-                    <h3><a href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
-                    <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
-                        {dateFormatter.format(post.data.pubDate)}
-                    </time>
-                    <p>{post.data.description}</p>
-                </li>
-            ))}
+<BaseLayout pageTitle="Home">
+    <section class="hero" aria-labelledby="intro-title">
+        <p class="eyebrow">A personal blog</p>
+        <h1 id="intro-title">Always a work<br class="desktop-break" /> in <em>progress</em></h1>
+        <p class="introduction">Following my curiosity and paying attention to everyday life.</p>
+        <TextLink href="/about/">Meet the person behind the notes</TextLink>
+    </section>
+    <section class="section" aria-labelledby="latest-posts">
+        <SectionHeading id="latest-posts" title="Thoughts, lately" href="/blog/" linkLabel="All posts" count={posts.length} />
+        <PostList posts={posts.slice(0, 5)} />
+    </section>
+    <section class="section" aria-labelledby="interests">
+        <SectionHeading id="interests" title="Often on my mind" href="/tags/" linkLabel="Interests" count={interests.length} />
+        <ul class="tag-grid" role="list">
+            {interests.slice(0, 4).map(({ tag, count }) => <li><TagLink tag={tag} count={count} variant="card" /></li>)}
         </ul>
-        <p><a href="/blog/">All posts</a></p>
     </section>
 </BaseLayout>
 
 <style>
-    section {
-        margin-top: 2.5rem;
-    }
-
-    .posts {
-        list-style: none;
-        padding: 0;
-    }
-
-    .posts li + li {
-        margin-top: 1.75rem;
-    }
-
-    h3 {
-        margin: 0 0 0.25rem;
-    }
-
-    time {
-        font-size: 0.875rem;
-    }
-
-    .posts p {
-        margin: 0.5rem 0 0;
-    }
+    .hero { padding-block: var(--md-sys-spacing-10) var(--md-sys-spacing-8); }
+    .eyebrow { margin-block-end: var(--md-sys-spacing-6); color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
+    h1 { font: var(--md-comp-hero-headline-typography); }
+    em { color: var(--md-sys-color-primary); }
+    .introduction { margin-block: var(--md-sys-spacing-8); color: var(--md-sys-color-on-surface-variant); }
+    .desktop-break { display: none; }
+    @media (min-width: 600px) { .desktop-break { display: initial; } }
+    @media (min-width: 840px) { .hero { padding-block: var(--md-sys-spacing-16) var(--md-sys-spacing-12); } }
 </style>

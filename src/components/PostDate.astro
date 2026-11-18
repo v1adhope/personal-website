@@ -1,0 +1,13 @@
+---
+interface Props { date: Date; stacked?: boolean; }
+const { date, stacked = false } = Astro.props;
+const monthDay = new Intl.DateTimeFormat("en", { month: "short", day: "2-digit", timeZone: "UTC" }).format(date);
+const year = date.getUTCFullYear();
+---
+
+<time class:list={[{ stacked }]} datetime={date.toISOString().slice(0, 10)}>{monthDay}{" "}<span>{year}</span></time>
+
+<style>
+    time { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
+    @media (min-width: 600px) { .stacked span { display: block; } }
+</style>

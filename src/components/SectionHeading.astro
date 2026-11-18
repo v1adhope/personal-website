@@ -1,0 +1,16 @@
+---
+import TextLink from "./TextLink.astro";
+interface Props { id: string; title: string; href?: string; linkLabel?: string; count?: number; }
+const { id, title, href, linkLabel, count } = Astro.props;
+---
+
+<div class="section-heading">
+    <h2 id={id}>{title}</h2>
+    {href && <TextLink href={href} count={count}>{linkLabel}</TextLink>}
+</div>
+
+<style>
+    .section-heading { display: flex; flex-direction: column; align-items: flex-start; gap: var(--md-sys-spacing-2); margin-block-end: var(--md-sys-spacing-8); }
+    .section-heading :global(.text-link) { font: var(--md-sys-typescale-body-medium); }
+    @media (min-width: 600px) { .section-heading { flex-direction: row; justify-content: space-between; align-items: center; gap: var(--md-sys-spacing-6); } }
+</style>

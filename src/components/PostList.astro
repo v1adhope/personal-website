@@ -1,0 +1,10 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogPost from "./BlogPost.astro";
+interface Props { posts: CollectionEntry<"blog">[]; }
+const { posts } = Astro.props;
+---
+
+<ul class="post-list" role="list">
+    {posts.map((post) => <BlogPost post={post} />)}
+</ul>

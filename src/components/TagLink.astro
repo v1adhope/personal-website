@@ -1,0 +1,21 @@
+---
+import { getTagLabel } from "../lib/posts";
+interface Props { tag: string; count?: number; variant?: "chip" | "card"; }
+const { tag, count, variant = "chip" } = Astro.props;
+const label = getTagLabel(tag);
+---
+
+<a class:list={["tag-link", variant]} href={`/tags/${encodeURIComponent(tag)}/`}>
+    <span>{label}</span>
+    {count !== undefined && <span class="count" aria-label={`${count} ${count === 1 ? "post" : "posts"}`}>{String(count).padStart(2, "0")}</span>}
+</a>
+
+<style>
+    .tag-link { display: inline-flex; align-items: center; gap: var(--md-sys-spacing-3); min-height: var(--md-sys-size-touch-target); border: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant); text-decoration: none; overflow-wrap: anywhere; }
+    .chip { padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4); border-radius: var(--md-comp-filter-chip-container-shape); background: var(--md-comp-filter-chip-container-color); color: var(--md-comp-filter-chip-label-color); font: var(--md-sys-typescale-body-medium); }
+    .card { display: flex; justify-content: space-between; gap: var(--md-sys-spacing-1); height: 100%; min-height: var(--md-sys-spacing-16); padding: var(--md-sys-spacing-4); border-radius: var(--md-comp-outlined-card-container-shape); background: var(--md-comp-outlined-card-container-color); color: var(--md-comp-outlined-card-label-color); font: var(--md-sys-typescale-body-medium); }
+    .tag-link:hover { background: color-mix(in srgb, var(--md-sys-color-primary) var(--md-sys-state-hover-state-layer-opacity), var(--md-sys-color-surface-container)); border-color: var(--md-sys-color-outline); }
+    .tag-link:active { background: color-mix(in srgb, var(--md-sys-color-primary) var(--md-sys-state-pressed-state-layer-opacity), var(--md-sys-color-surface-container)); }
+    .count { flex: none; font: var(--md-sys-typescale-label-small); }
+    @media (min-width: 600px) { .card { min-height: calc(var(--md-sys-spacing-10) * 2); padding: var(--md-sys-spacing-6); font: var(--md-sys-typescale-headline-small); } }
+</style>

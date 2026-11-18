@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Wrangler build artifacts and local state
 .wrangler/
+
+# Playwright MCP artifacts
+.playwright-mcp/

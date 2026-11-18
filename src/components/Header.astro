@@ -1,11 +1,14 @@
 ---
-import Menu from "./Menu.astro";
 import Navigation from "./Navigation.astro";
 ---
 
-<header>
-    <nav>
-        <Menu />
-        <Navigation />
-    </nav>
+<header class="site-header">
+    <a class="site-name" href="/">Vladislav Gardner</a>
+    <Navigation />
 </header>
+
+<style>
+    .site-header { display: flex; flex-direction: column; gap: var(--md-sys-spacing-4); padding-block: var(--md-sys-spacing-6); border-bottom: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant); }
+    .site-name { align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--md-sys-size-touch-target); font: var(--md-sys-typescale-body-large); text-decoration: none; }
+    @media (min-width: 840px) { .site-header { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--md-sys-spacing-6); padding-block: var(--md-sys-spacing-8); } }
+</style>

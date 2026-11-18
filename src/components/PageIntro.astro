@@ -1,0 +1,21 @@
+---
+interface Props { eyebrow?: string; title: string; description?: string; count?: number; }
+const { eyebrow, title, description, count } = Astro.props;
+---
+
+<header class="page-intro">
+    {(eyebrow || Astro.slots.has("eyebrow")) && <p class="eyebrow"><slot name="eyebrow">{eyebrow}</slot></p>}
+    <h1>{title}{count !== undefined && <sup aria-label={`${count} total`}>{count}</sup>}</h1>
+    {description && <p class="description">{description}</p>}
+    {Astro.slots.has("default") && <div class="intro-action"><slot /></div>}
+</header>
+
+<style>
+    .page-intro { padding-block: var(--md-sys-spacing-10) var(--md-sys-spacing-8); }
+    .eyebrow { margin-block-end: var(--md-sys-spacing-6); color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
+    h1 { max-width: 100%; }
+    sup { display: inline-block; margin-inline-start: var(--md-sys-spacing-3); color: var(--md-sys-color-primary); font: var(--md-sys-typescale-label-small); vertical-align: super; }
+    .description { margin-block-start: var(--md-sys-spacing-6); color: var(--md-sys-color-on-surface-variant); }
+    .intro-action { margin-block-start: var(--md-sys-spacing-8); font: var(--md-sys-typescale-body-medium); }
+    @media (min-width: 840px) { .page-intro { padding-block: var(--md-sys-spacing-16) var(--md-sys-spacing-12); } }
+</style>

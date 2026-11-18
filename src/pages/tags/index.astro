@@ -1,39 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
-const allPosts = await getCollection("blog");
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-const pageTitle = "Tag Index";
+import PageIntro from "../../components/PageIntro.astro";
+import TagLink from "../../components/TagLink.astro";
+import { getTagCounts } from "../../lib/posts";
+const interests = getTagCounts(await getCollection("blog"));
 ---
 
-<!-- DRY: uniqueTags fn, tags index component -->
-<BaseLayout pageTitle={pageTitle}>
-    <div class="tags">
-        {tags.map((tag) => (
-            <p class="tag">
-                <a href={`/tags/${tag}`}>{tag}</a>
-            </p>
-        ))}
-    </div>
+<BaseLayout pageTitle="Interests">
+    <PageIntro eyebrow="Follow a thread" title="A curious mind. Many interests" count={interests.length} description="A few recurring themes. Pick one and see where it leads." />
+    <section class="section" aria-label="Browse interests">
+        <ul class="tag-grid" role="list">
+            {interests.map(({ tag, count }) => <li><TagLink tag={tag} count={count} variant="card" /></li>)}
+        </ul>
+    </section>
 </BaseLayout>
-
-<style>
-    a {
-        color: #00539f;
-    }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .tag {
-        margin: 0.25em;
-        border: dotted 1px #a1a1a1;
-        border-radius: 0.5em;
-        padding: 0.5em 1em;
-        font-size: 1.15em;
-        background-color: #f8fcfd;
-    }
-</style>
