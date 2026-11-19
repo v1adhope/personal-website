@@ -3,6 +3,7 @@ interface Props {
   name:
     | "arrow-right"
     | "arrow-up-right"
+    | "file-text"
     | "code"
     | "linkedin"
     | "telegram"
@@ -27,6 +28,9 @@ const { name } = Astro.props;
 >
   {name === "arrow-right" && <path d="M4 12h15m-5-5 5 5-5 5" />}
   {name === "arrow-up-right" && <path d="M7 17 17 7M7 7h10v10" />}
+  {name === "file-text" && (
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6M8 13h8M8 17h6" />
+  )}
   {name === "code" && <path d="m7 7-5 5 5 5m10-10 5 5-5 5M14 4l-4 16" />}
   {name === "linkedin" && (
     <>

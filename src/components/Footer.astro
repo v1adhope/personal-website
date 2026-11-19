@@ -1,6 +1,11 @@
 ---
 import Social from "./Social.astro";
 const links = [
+  {
+    name: "CV",
+    url: "https://rxresu.me/v1adhope/vladislav-nguen-software-engineer",
+    icon: "file-text",
+  },
   { name: "GitHub", url: "https://github.com/v1adhope", icon: "code" },
   {
     name: "LinkedIn",
@@ -8,8 +13,8 @@ const links = [
     icon: "linkedin",
   },
   { name: "Telegram", url: "https://t.me/v1adhope", icon: "telegram" },
-  { name: "RSS", url: "/rss.xml", icon: "rss" },
   { name: "Email", url: "mailto:vladislavgardner@proton.me", icon: "mail" },
+  { name: "RSS", url: "/rss.xml", icon: "rss" },
 ] as const;
 ---
 
@@ -42,6 +47,13 @@ const links = [
     justify-content: space-between;
     gap: var(--md-sys-spacing-6);
   }
+  .footer-main > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .signature {
+    overflow-wrap: anywhere;
+  }
   .signature a {
     display: inline-flex;
     align-items: center;
@@ -59,6 +71,9 @@ const links = [
     row-gap: var(--md-sys-spacing-2);
     padding: 0;
     list-style: none;
+  }
+  li {
+    max-width: 100%;
   }
   .copyright {
     margin-top: var(--md-sys-spacing-12);
