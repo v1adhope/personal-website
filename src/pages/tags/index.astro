@@ -3,12 +3,16 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageIntro from "../../components/PageIntro.astro";
 import TagLink from "../../components/TagLink.astro";
+import TextLink from "../../components/TextLink.astro";
 import { getTagCounts } from "../../lib/posts";
-const interests = getTagCounts(await getCollection("blog"));
+const posts = await getCollection("blog");
+const interests = getTagCounts(posts);
 ---
 
 <BaseLayout pageTitle="Interests">
-    <PageIntro eyebrow="Follow a thread" title="A curious mind. Many interests" count={interests.length} description="A few recurring themes. Pick one and see where it leads." />
+    <PageIntro eyebrow="Follow a thread" title="Interesets" count={interests.length} description="Familiar themes, new directions. See what draws you in.">
+        <TextLink href="/blog/" count={posts.length}>Posts</TextLink>
+    </PageIntro>
     <section class="section" aria-label="Browse interests">
         <ul class="tag-grid" role="list">
             {interests.map(({ tag, count }) => <li><TagLink tag={tag} count={count} variant="card" /></li>)}
