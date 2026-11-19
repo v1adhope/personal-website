@@ -1,3 +1,7 @@
+# Personal Blog
+
+Personal blog built with Astro, Markdown, and RSS, hosted on Cloudflare Workers.
+
 ## Development
 
 - Use Astro components; do not add UI frameworks.
