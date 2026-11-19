@@ -2,6 +2,8 @@
 
 The site uses Astro components that render HTML and CSS with no client-side JavaScript. Its layout follows the Fieldnotes mockup while retaining the blog's content, routes, RSS feed, and contact links.
 
+`src/styles/global.css` imports the original zero-style reset in `src/styles/reset.css` first, followed by fonts and tokens. Global and component styles build on that reset, including explicit emphasis and visible keyboard focus styles.
+
 ## Tokens
 
 `src/styles/tokens.css` follows Material Design 3 naming and token tiers:
