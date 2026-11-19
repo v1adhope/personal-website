@@ -1,11 +1,11 @@
 ---
+import { dateFormatter } from "../lib/date";
 interface Props { date: Date; stacked?: boolean; }
 const { date, stacked = false } = Astro.props;
-const monthDay = new Intl.DateTimeFormat("en", { month: "short", day: "2-digit", timeZone: "UTC" }).format(date);
-const year = date.getUTCFullYear();
+const parts = dateFormatter.formatToParts(date);
 ---
 
-<time class:list={[{ stacked }]} datetime={date.toISOString().slice(0, 10)}>{monthDay}{" "}<span>{year}</span></time>
+<time class:list={[{ stacked }]} datetime={date.toISOString()}>{parts.map(({ type, value }) => type === "year" ? <span>{value}</span> : value)}</time>
 
 <style>
     time { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }

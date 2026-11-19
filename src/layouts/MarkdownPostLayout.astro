@@ -4,15 +4,16 @@ import BaseLayout from "./BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import TagList from "../components/TagList.astro";
 import TextLink from "../components/TextLink.astro";
+import { dateFormatter } from "../lib/date";
 interface Props { frontmatter: CollectionEntry<"blog">["data"]; }
 const { frontmatter } = Astro.props;
-const date = new Intl.DateTimeFormat("en", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(frontmatter.pubDate);
+const date = dateFormatter.format(frontmatter.pubDate);
 ---
 
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
     <article>
         <PageIntro title={frontmatter.title} description={frontmatter.description}>
-            <span slot="eyebrow">Post · <time datetime={frontmatter.pubDate.toISOString().slice(0, 10)}>{date}</time></span>
+            <span slot="eyebrow">Post · <time datetime={frontmatter.pubDate.toISOString()}>{date}</time></span>
             <TextLink href="/blog/">All posts</TextLink>
         </PageIntro>
         <div class="section article-content">
