@@ -9,10 +9,23 @@ const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
 const currentPath = normalizePath(Astro.url.pathname);
 
 const links: NavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/about/", label: "About" },
-  { href: "/blog/", label: "Blog", activePrefixes: ["/posts/"] },
-  { href: "/tags/", label: "Tags" },
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/about/",
+    label: "About",
+  },
+  {
+    href: "/blog/",
+    label: "Blog",
+    activePrefixes: ["/posts/"],
+  },
+  {
+    href: "/tags/",
+    label: "Tags",
+  },
 ];
 
 function matchesPath(path: string): boolean {

@@ -23,6 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# VS Code settings
+.vscode/
+
 # Wrangler build artifacts and local state
 .wrangler/
 
