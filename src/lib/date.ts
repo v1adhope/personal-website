@@ -4,3 +4,9 @@ export const dateFormatter = new Intl.DateTimeFormat("en", {
   day: "numeric",
   timeZone: "UTC",
 });
+
+export const monthDayFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});

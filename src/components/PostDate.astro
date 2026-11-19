@@ -1,8 +1,8 @@
 ---
-import { dateFormatter } from "../lib/date";
-interface Props { date: Date; stacked?: boolean; }
-const { date, stacked = false } = Astro.props;
-const parts = dateFormatter.formatToParts(date);
+import { dateFormatter, monthDayFormatter } from "../lib/date";
+interface Props { date: Date; stacked?: boolean; showYear?: boolean; }
+const { date, stacked = false, showYear = true } = Astro.props;
+const parts = (showYear ? dateFormatter : monthDayFormatter).formatToParts(date);
 ---
 
 <time class:list={[{ stacked }]} datetime={date.toISOString()}>{parts.map(({ type, value }) => type === "year" ? <span>{value}</span> : value)}</time>

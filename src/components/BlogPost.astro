@@ -2,12 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import PostDate from "./PostDate.astro";
 import TagList from "./TagList.astro";
-interface Props { post: CollectionEntry<"blog">; }
-const { post } = Astro.props;
+interface Props { post: CollectionEntry<"blog">; showYear?: boolean; }
+const { post, showYear = true } = Astro.props;
 ---
 
 <li class="post-row">
-    <PostDate date={post.data.pubDate} stacked />
+    <PostDate date={post.data.pubDate} stacked showYear={showYear} />
     <div class="post-content">
         <h3><a href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
         <p>{post.data.description}</p>
