@@ -14,9 +14,9 @@ const interests = getTagCounts(posts);
     <PageIntro eyebrow="The blog" title="Blog" count={posts.length} description="Thoughts, notes, and things I learn along the way.">
         <TextLink href="/tags/" count={interests.length}>Interests</TextLink>
     </PageIntro>
-    {years.map((year) => (
+    {years.map((year, index) => (
         <section class="section" aria-labelledby={`year-${year}`}>
-            <div class="year-heading"><h2 id={`year-${year}`}>{year}</h2><p>Newest first</p></div>
+            <div class="year-heading"><h2 id={`year-${year}`}>{year}</h2>{index === 0 && <p>Newest first</p>}</div>
             <PostList posts={posts.filter((post) => post.data.pubDate.getUTCFullYear() === year)} />
         </section>
     ))}
