@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
-export function getTagLabel(tag: string) {
+export function getTagLabel(tag: string = "Interest") {
     const names: Record<string, string> = {
         ai: "AI", sql: "SQL", dns: "DNS", golang: "Go", macos: "macOS",
         postgres: "Postgres", react: "React", obsidian: "Obsidian",
