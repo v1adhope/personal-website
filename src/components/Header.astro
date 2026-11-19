@@ -1,10 +1,14 @@
 ---
 import Navigation from "./Navigation.astro";
+interface Props {
+  siteTitle: string;
+}
+const { siteTitle } = Astro.props;
 ---
 
 <header class="site-header">
   <a class="site-name" href="/">
-    Vladislav Gardner
+    {siteTitle}
   </a>
   <Navigation />
 </header>

@@ -1,0 +1,39 @@
+---
+import TagLink from "./TagLink.astro";
+import type { getTagCounts } from "../lib/posts";
+
+interface Props {
+  interests: ReturnType<typeof getTagCounts>;
+}
+
+const { interests } = Astro.props;
+---
+
+<ul class="tag-grid" role="list">
+  {interests.map(({ tag, count }) => (
+    <li>
+      <TagLink tag={tag} count={count} variant="card" />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .tag-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(
+        min(100%, max(10rem, calc((100% - var(--md-sys-layout-grid-gap)) / 2))),
+        1fr
+      )
+    );
+    gap: var(--md-sys-layout-grid-gap);
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 600px) {
+    .tag-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

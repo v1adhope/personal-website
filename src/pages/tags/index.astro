@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageIntro from "../../components/PageIntro.astro";
-import TagLink from "../../components/TagLink.astro";
+import TagGrid from "../../components/TagGrid.astro";
 import TextLink from "../../components/TextLink.astro";
 import { getTagCounts } from "../../lib/posts";
 const posts = await getCollection("blog");
@@ -21,12 +21,6 @@ const interests = getTagCounts(posts);
     </TextLink>
   </PageIntro>
   <section class="section" aria-label="Browse interests">
-    <ul class="tag-grid" role="list">
-      {interests.map(({ tag, count }) => (
-        <li>
-          <TagLink tag={tag} count={count} variant="card" />
-        </li>
-      ))}
-    </ul>
+    <TagGrid interests={interests} />
   </section>
 </BaseLayout>

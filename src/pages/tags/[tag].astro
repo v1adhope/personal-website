@@ -4,15 +4,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageIntro from "../../components/PageIntro.astro";
 import PostList from "../../components/PostList.astro";
 import TextLink from "../../components/TextLink.astro";
-import { getTagLabel, newestFirst } from "../../lib/posts";
+import { getTagCounts, getTagLabel, newestFirst } from "../../lib/posts";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
-  ];
-
-  return uniqueTags.map((tag) => {
+  return getTagCounts(allPosts).map(({ tag }) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.includes(tag),
     );

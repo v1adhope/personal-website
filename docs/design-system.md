@@ -20,7 +20,7 @@ Use semantic color roles in components. For example, text uses `--md-sys-color-o
 
 ## Typography
 
-Roboto Serif is self-hosted in `public/fonts/roboto-serif/`, including upright and italic variable fonts, their language subsets, and the OFL license. `src/styles/fonts.css` declares the font faces with `font-display: swap`. The Latin upright font is preloaded; other subsets and italics load as needed. Georgia and the system serif font are fallbacks. Code examples use a system monospace font.
+Roboto Serif is self-hosted in `public/fonts/roboto-serif/`, including upright and italic variable fonts and the OFL license. `src/styles/fonts.css` declares the font faces with `font-display: swap`. The upright font is preloaded; the italic font loads as needed. Georgia and the system serif font are fallbacks. Code examples use a system monospace font.
 
 The approved 16px Major Third scale is mapped to semantic roles below. These are the project's editorial values, rather than Material's default type sizes. Heading levels in HTML describe document structure; choose the visual role independently.
 
@@ -79,6 +79,7 @@ Compact layouts put navigation below the site name and dates above post titles. 
 | `PostList` / `BlogPost` | Shared dated post rows with descriptions and tag links            |
 | `PostDate`              | UTC dates, stacked or inline presentation                         |
 | `TagList` / `TagLink`   | Linked interests as chips or cards with optional counts           |
+| `TagGrid`               | Shared responsive grid of interest cards with post counts         |
 
 `BaseLayout` supplies the shared shell, metadata, font preload, RSS discovery, and skip link. `MarkdownPostLayout` supplies article metadata, tags, prose styling, and archive links. Content queries and label formatting run during Astro rendering; no scripts are sent to the browser. Reading times are omitted. RSS and Email have their own icons and no arrow.
 

@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostList from "../components/PostList.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import TagLink from "../components/TagLink.astro";
+import TagGrid from "../components/TagGrid.astro";
 import TextLink from "../components/TextLink.astro";
 import { getTagCounts, newestFirst } from "../lib/posts";
 const posts = newestFirst(await getCollection("blog"));
@@ -40,22 +40,11 @@ const interests = getTagCounts(posts);
       linkLabel="Interests"
       count={interests.length}
     />
-    <ul class="tag-grid" role="list">
-      {interests.slice(0, 4).map(({ tag, count }) => (
-        <li>
-          <TagLink tag={tag} count={count} variant="card" />
-        </li>
-      ))}
-    </ul>
+    <TagGrid interests={interests.slice(0, 4)} />
   </section>
 </BaseLayout>
 
 <style>
-  .eyebrow {
-    margin-block-end: var(--md-sys-spacing-6);
-    color: var(--md-sys-color-on-surface-variant);
-    font: var(--md-sys-typescale-body-medium);
-  }
   h1 {
     font: var(--md-comp-hero-headline-typography);
   }

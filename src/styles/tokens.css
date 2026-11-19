@@ -195,6 +195,7 @@
  * large: 1200–1599px; extra-large: ≥1600px.
  * Window gutters: 1rem compact, 1.5rem at every larger breakpoint.
  * The centered reading column can introduce additional whitespace.
+ * Larger classes retain expanded typography and the 50rem reading limit.
  */
 @media (min-width: 600px) {
   :root {
@@ -209,18 +210,5 @@
     --md-sys-layout-section-space: var(--md-sys-spacing-12);
     --md-comp-post-list-item-gap: var(--md-sys-spacing-12);
     --md-comp-hero-headline-typography: var(--md-sys-typescale-display-large);
-  }
-}
-
-/* Larger classes retain expanded typography and the 50rem reading limit. */
-@media (min-width: 1200px) {
-  :root {
-    --md-sys-layout-gutter: var(--md-sys-spacing-6);
-  }
-}
-
-@media (min-width: 1600px) {
-  :root {
-    --md-sys-layout-gutter: var(--md-sys-spacing-6);
   }
 }

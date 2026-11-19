@@ -6,6 +6,7 @@ interface Props {
   pageTitle: string;
   description?: string;
 }
+const siteTitle = "Vladislav Gardner";
 const {
   pageTitle,
   description = "Thoughts, notes, and things I learn along the way. A personal blog by Vladislav Gardner.",
@@ -24,7 +25,7 @@ const {
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Vladislav Gardner"
+      title={siteTitle}
       href="/rss.xml"
     />
     <link
@@ -34,7 +35,7 @@ const {
       type="font/woff2"
       crossorigin
     />
-    <title>{pageTitle} — Vladislav Gardner</title>
+    <title>{pageTitle} — {siteTitle}</title>
   </head>
   <body>
     <a class="skip-link" href="#main-content">
@@ -42,13 +43,13 @@ const {
     </a>
     <div class="site-container">
       <div class="header-layout">
-        <Header />
+        <Header siteTitle={siteTitle} />
       </div>
       <main id="main-content" class="page-stack" tabindex="-1">
         <slot />
       </main>
       <div class="footer-layout">
-        <Footer />
+        <Footer siteTitle={siteTitle} />
       </div>
     </div>
   </body>
