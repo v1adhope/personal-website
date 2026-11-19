@@ -11,31 +11,75 @@ const interests = getTagCounts(posts);
 ---
 
 <BaseLayout pageTitle="Home">
-    <section class="hero" aria-labelledby="intro-title">
-        <p class="eyebrow">A personal blog</p>
-        <h1 id="intro-title">Always a work<br class="desktop-break" /> in <em>progress</em></h1>
-        <p class="introduction">Following my curiosity and paying attention to everyday life.</p>
-        <TextLink href="/about/">Meet the person behind the notes</TextLink>
-    </section>
-    <section class="section" aria-labelledby="latest-posts">
-        <SectionHeading id="latest-posts" title="Thoughts, lately" href="/blog/" linkLabel="All posts" count={posts.length} />
-        <PostList posts={posts.slice(0, 5)} />
-    </section>
-    <section class="section" aria-labelledby="interests">
-        <SectionHeading id="interests" title="Often on my mind" href="/tags/" linkLabel="Interests" count={interests.length} />
-        <ul class="tag-grid" role="list">
-            {interests.slice(0, 4).map(({ tag, count }) => <li><TagLink tag={tag} count={count} variant="card" /></li>)}
-        </ul>
-    </section>
+  <section class="hero" aria-labelledby="intro-title">
+    <p class="eyebrow">A personal blog</p>
+    <h1 id="intro-title">
+      Always a work
+      <br class="desktop-break" /> in <em>progress</em>
+    </h1>
+    <p class="introduction">
+      Following my curiosity and paying attention to everyday life.
+    </p>
+    <TextLink href="/about/">Meet the person behind the notes</TextLink>
+  </section>
+  <section class="section" aria-labelledby="latest-posts">
+    <SectionHeading
+      id="latest-posts"
+      title="Thoughts, lately"
+      href="/blog/"
+      linkLabel="All posts"
+      count={posts.length}
+    />
+    <PostList posts={posts.slice(0, 5)} />
+  </section>
+  <section class="section" aria-labelledby="interests">
+    <SectionHeading
+      id="interests"
+      title="Often on my mind"
+      href="/tags/"
+      linkLabel="Interests"
+      count={interests.length}
+    />
+    <ul class="tag-grid" role="list">
+      {interests.slice(0, 4).map(({ tag, count }) => (
+        <li>
+          <TagLink tag={tag} count={count} variant="card" />
+        </li>
+      ))}
+    </ul>
+  </section>
 </BaseLayout>
 
 <style>
-    .hero { padding-block: var(--md-sys-spacing-10) var(--md-sys-spacing-8); }
-    .eyebrow { margin-block-end: var(--md-sys-spacing-6); color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
-    h1 { font: var(--md-comp-hero-headline-typography); }
-    em { color: var(--md-sys-color-primary); }
-    .introduction { margin-block: var(--md-sys-spacing-8); color: var(--md-sys-color-on-surface-variant); }
-    .desktop-break { display: none; }
-    @media (min-width: 600px) { .desktop-break { display: initial; } }
-    @media (min-width: 840px) { .hero { padding-block: var(--md-sys-spacing-16) var(--md-sys-spacing-12); } }
+  .hero {
+    padding-block: var(--md-sys-spacing-10) var(--md-sys-spacing-8);
+  }
+  .eyebrow {
+    margin-block-end: var(--md-sys-spacing-6);
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-body-medium);
+  }
+  h1 {
+    font: var(--md-comp-hero-headline-typography);
+  }
+  em {
+    color: var(--md-sys-color-primary);
+  }
+  .introduction {
+    margin-block: var(--md-sys-spacing-8);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+  .desktop-break {
+    display: none;
+  }
+  @media (min-width: 600px) {
+    .desktop-break {
+      display: initial;
+    }
+  }
+  @media (min-width: 840px) {
+    .hero {
+      padding-block: var(--md-sys-spacing-16) var(--md-sys-spacing-12);
+    }
+  }
 </style>

@@ -10,12 +10,23 @@ const interests = getTagCounts(posts);
 ---
 
 <BaseLayout pageTitle="Interests">
-    <PageIntro eyebrow="Follow a thread" title="Interesets" count={interests.length} description="Familiar themes, new directions. See what draws you in.">
-        <TextLink href="/blog/" count={posts.length}>Posts</TextLink>
-    </PageIntro>
-    <section class="section" aria-label="Browse interests">
-        <ul class="tag-grid" role="list">
-            {interests.map(({ tag, count }) => <li><TagLink tag={tag} count={count} variant="card" /></li>)}
-        </ul>
-    </section>
+  <PageIntro
+    eyebrow="Follow a thread"
+    title="Interesets"
+    count={interests.length}
+    description="Familiar themes, new directions. See what draws you in."
+  >
+    <TextLink href="/blog/" count={posts.length}>
+      Posts
+    </TextLink>
+  </PageIntro>
+  <section class="section" aria-label="Browse interests">
+    <ul class="tag-grid" role="list">
+      {interests.map(({ tag, count }) => (
+        <li>
+          <TagLink tag={tag} count={count} variant="card" />
+        </li>
+      ))}
+    </ul>
+  </section>
 </BaseLayout>

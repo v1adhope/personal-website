@@ -1,13 +1,30 @@
 ---
 import { dateFormatter, monthDayFormatter } from "../lib/date";
-interface Props { date: Date; stacked?: boolean; showYear?: boolean; }
+interface Props {
+  date: Date;
+  stacked?: boolean;
+  showYear?: boolean;
+}
 const { date, stacked = false, showYear = true } = Astro.props;
-const parts = (showYear ? dateFormatter : monthDayFormatter).formatToParts(date);
+const parts = (showYear ? dateFormatter : monthDayFormatter).formatToParts(
+  date,
+);
 ---
 
-<time class:list={[{ stacked }]} datetime={date.toISOString()}>{parts.map(({ type, value }) => type === "year" ? <span>{value}</span> : value)}</time>
+<time class:list={[{ stacked }]} datetime={date.toISOString()}>
+  {parts.map(({ type, value }) =>
+    type === "year" ? <span>{value}</span> : value,
+  )}
+</time>
 
 <style>
-    time { color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); }
-    @media (min-width: 600px) { .stacked span { display: block; } }
+  time {
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-body-medium);
+  }
+  @media (min-width: 600px) {
+    .stacked span {
+      display: block;
+    }
+  }
 </style>

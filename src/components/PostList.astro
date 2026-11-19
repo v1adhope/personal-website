@@ -1,10 +1,15 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BlogPost from "./BlogPost.astro";
-interface Props { posts: CollectionEntry<"blog">[]; showYear?: boolean; }
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  showYear?: boolean;
+}
 const { posts, showYear = true } = Astro.props;
 ---
 
 <ul class="post-list" role="list">
-    {posts.map((post) => <BlogPost post={post} showYear={showYear} />)}
+  {posts.map((post) => (
+    <BlogPost post={post} showYear={showYear} />
+  ))}
 </ul>

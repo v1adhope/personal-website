@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "astro": "astro",
     "generate-types": "wrangler types"
   },
@@ -17,5 +19,9 @@
     "@astrojs/rss": "^4.0.19",
     "astro": "^7.4.7",
     "wrangler": "^4.158.0"
+  },
+  "devDependencies": {
+    "prettier": "3.10.1",
+    "prettier-plugin-astro": "1.1.2"
   }
 }

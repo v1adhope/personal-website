@@ -1,50 +1,89 @@
 ---
 interface NavLink {
-    href: string;
-    label: string;
-    activePrefixes?: string[];
+  href: string;
+  label: string;
+  activePrefixes?: string[];
 }
 
 const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
 const currentPath = normalizePath(Astro.url.pathname);
 
 const links: NavLink[] = [
-    { href: "/", label: "Home" },
-    { href: "/about/", label: "About" },
-    { href: "/blog/", label: "Blog", activePrefixes: ["/posts/"] },
-    { href: "/tags/", label: "Tags" },
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/blog/", label: "Blog", activePrefixes: ["/posts/"] },
+  { href: "/tags/", label: "Tags" },
 ];
 
 function matchesPath(path: string): boolean {
-    const prefix = normalizePath(path);
+  const prefix = normalizePath(path);
 
-    return currentPath === prefix ||
-        (prefix !== "/" && currentPath.startsWith(`${prefix}/`));
+  return (
+    currentPath === prefix ||
+    (prefix !== "/" && currentPath.startsWith(`${prefix}/`))
+  );
 }
 
 function getAriaCurrent({
-    href,
-    activePrefixes = [],
+  href,
+  activePrefixes = [],
 }: NavLink): "page" | "true" | undefined {
-    if (currentPath === normalizePath(href)) return "page";
+  if (currentPath === normalizePath(href)) return "page";
 
-    return [href, ...activePrefixes].some(matchesPath) ? "true" : undefined;
+  return [href, ...activePrefixes].some(matchesPath) ? "true" : undefined;
 }
 ---
 
 <nav aria-label="Main navigation">
-    <ul role="list">
-        {links.map((link) => (
-            <li><a href={link.href} aria-current={getAriaCurrent(link)}>{link.label}</a></li>
-        ))}
-    </ul>
+  <ul role="list">
+    {links.map((link) => (
+      <li>
+        <a href={link.href} aria-current={getAriaCurrent(link)}>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
 </nav>
 
 <style>
-    nav { width: 100%; }
-    ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 0; list-style: none; }
-    a { display: flex; align-items: center; justify-content: center; min-height: var(--md-sys-size-touch-target); padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3); border: var(--md-sys-size-border) solid transparent; border-radius: var(--md-comp-navigation-container-shape); color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-body-medium); text-decoration: none; }
-    a:hover { background: var(--md-sys-color-surface-container); color: var(--md-sys-color-primary); }
-    a[aria-current] { border-color: var(--md-sys-color-outline); background: var(--md-comp-navigation-active-container-color); color: var(--md-comp-navigation-active-label-color); }
-    @media (min-width: 840px) { nav { width: auto; } ul { display: flex; gap: var(--md-sys-spacing-1); } }
+  nav {
+    width: 100%;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--md-sys-size-touch-target);
+    padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+    border: var(--md-sys-size-border) solid transparent;
+    border-radius: var(--md-comp-navigation-container-shape);
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-body-medium);
+    text-decoration: none;
+  }
+  a:hover {
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-primary);
+  }
+  a[aria-current] {
+    border-color: var(--md-sys-color-outline);
+    background: var(--md-comp-navigation-active-container-color);
+    color: var(--md-comp-navigation-active-label-color);
+  }
+  @media (min-width: 840px) {
+    nav {
+      width: auto;
+    }
+    ul {
+      display: flex;
+      gap: var(--md-sys-spacing-1);
+    }
+  }
 </style>

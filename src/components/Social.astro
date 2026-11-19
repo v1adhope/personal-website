@@ -1,21 +1,35 @@
 ---
 import Icon from "./Icon.astro";
-interface Props { name: string; url: string; icon: "code" | "linkedin" | "telegram" | "rss" | "mail"; }
+interface Props {
+  name: string;
+  url: string;
+  icon: "code" | "linkedin" | "telegram" | "rss" | "mail";
+}
 const { name, url, icon } = Astro.props;
 const external = url.startsWith("https://");
 ---
 
-<a href={url}><Icon name={icon} /><span>{name}</span>{external && <Icon name="arrow-up-right" />}</a>
+<a href={url}>
+  <Icon name={icon} />
+  <span>{name}</span>
+  {external && <Icon name="arrow-up-right" />}
+</a>
 
 <style>
-    a {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--md-sys-spacing-2);
-        min-height: var(--md-sys-size-touch-target);
-        font: var(--md-sys-typescale-body-medium);
-        text-decoration: none;
-    }
-    a:hover span { text-decoration: underline; text-underline-offset: var(--md-sys-spacing-1); }
-    a :global(svg:last-child:not(:first-child)) { width: var(--md-sys-spacing-3); height: var(--md-sys-spacing-3); }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--md-sys-spacing-2);
+    min-height: var(--md-sys-size-touch-target);
+    font: var(--md-sys-typescale-body-medium);
+    text-decoration: none;
+  }
+  a:hover span {
+    text-decoration: underline;
+    text-underline-offset: var(--md-sys-spacing-1);
+  }
+  a :global(svg:last-child:not(:first-child)) {
+    width: var(--md-sys-spacing-3);
+    height: var(--md-sys-spacing-3);
+  }
 </style>

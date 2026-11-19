@@ -5,31 +5,54 @@ import PageIntro from "../components/PageIntro.astro";
 import TagList from "../components/TagList.astro";
 import TextLink from "../components/TextLink.astro";
 import { dateFormatter } from "../lib/date";
-interface Props { frontmatter: CollectionEntry<"blog">["data"]; }
+interface Props {
+  frontmatter: CollectionEntry<"blog">["data"];
+}
 const { frontmatter } = Astro.props;
 const date = dateFormatter.format(frontmatter.pubDate);
 ---
 
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
-    <article>
-        <PageIntro title={frontmatter.title} description={frontmatter.description}>
-            <span slot="eyebrow">Post · <time datetime={frontmatter.pubDate.toISOString()}>{date}</time></span>
-            <TextLink href="/blog/">All posts</TextLink>
-        </PageIntro>
-        <div class="section article-content">
-            <TagList tags={frontmatter.tags} />
-            <div class="prose"><slot /></div>
-        </div>
-        <footer class="article-footer">
-            <p>Thanks for reading.</p>
-            <TextLink href="/blog/">All posts</TextLink>
-        </footer>
-    </article>
+  <article>
+    <PageIntro title={frontmatter.title} description={frontmatter.description}>
+      <span slot="eyebrow">
+        Post · <time datetime={frontmatter.pubDate.toISOString()}>{date}</time>
+      </span>
+      <TextLink href="/blog/">All posts</TextLink>
+    </PageIntro>
+    <div class="section article-content">
+      <TagList tags={frontmatter.tags} />
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+    <footer class="article-footer">
+      <p>Thanks for reading.</p>
+      <TextLink href="/blog/">All posts</TextLink>
+    </footer>
+  </article>
 </BaseLayout>
 
 <style>
-    .article-content { display: grid; gap: var(--md-sys-spacing-8); }
-    .article-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--md-sys-spacing-4); padding-block: var(--md-sys-spacing-8) var(--md-sys-layout-section-padding); border-top: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant); }
-    .article-footer p { color: var(--md-sys-color-on-surface-variant); font-style: italic; }
-    .article-footer :global(.text-link) { font: var(--md-sys-typescale-body-medium); }
+  .article-content {
+    display: grid;
+    gap: var(--md-sys-spacing-8);
+  }
+  .article-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacing-4);
+    padding-block: var(--md-sys-spacing-8) var(--md-sys-layout-section-padding);
+    border-top: var(--md-sys-size-border) solid
+      var(--md-sys-color-outline-variant);
+  }
+  .article-footer p {
+    color: var(--md-sys-color-on-surface-variant);
+    font-style: italic;
+  }
+  .article-footer :global(.text-link) {
+    font: var(--md-sys-typescale-body-medium);
+  }
 </style>

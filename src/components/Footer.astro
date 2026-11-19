@@ -1,36 +1,82 @@
 ---
 import Social from "./Social.astro";
 const links = [
-    { name: "GitHub", url: "https://github.com/v1adhope", icon: "code" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/v1adhope", icon: "linkedin" },
-    { name: "Telegram", url: "https://t.me/v1adhope", icon: "telegram" },
-    { name: "RSS", url: "/rss.xml", icon: "rss" },
-    { name: "Email", url: "mailto:vladislavgardner@proton.me", icon: "mail" },
+  { name: "GitHub", url: "https://github.com/v1adhope", icon: "code" },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/v1adhope",
+    icon: "linkedin",
+  },
+  { name: "Telegram", url: "https://t.me/v1adhope", icon: "telegram" },
+  { name: "RSS", url: "/rss.xml", icon: "rss" },
+  { name: "Email", url: "mailto:vladislavgardner@proton.me", icon: "mail" },
 ] as const;
 ---
 
 <footer class="site-footer">
-    <div class="footer-main">
-        <div class="signature">
-            <a href="/">Vladislav Gardner</a>
-            <p>A quiet corner of the internet.</p>
-        </div>
-        <nav aria-label="Connect">
-            <ul role="list">{links.map((link) => <li><Social {...link} /></li>)}</ul>
-        </nav>
+  <div class="footer-main">
+    <div class="signature">
+      <a href="/">Vladislav Gardner</a>
+      <p>A quiet corner of the internet.</p>
     </div>
-    <p class="copyright">© {new Date().getUTCFullYear()} · Crafted with intention.</p>
+    <nav aria-label="Connect">
+      <ul role="list">
+        {links.map((link) => (
+          <li>
+            <Social {...link} />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <p class="copyright">
+    © {new Date().getUTCFullYear()} · Crafted with intention.
+  </p>
 </footer>
 
 <style>
-    .site-footer { padding-block: var(--md-sys-layout-section-padding) var(--md-sys-spacing-8); border-top: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant); }
-    .footer-main { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--md-sys-spacing-6); }
-    .signature a { display: inline-flex; align-items: center; min-height: var(--md-sys-size-touch-target); text-decoration: none; }
-    .signature p { margin-top: var(--md-sys-spacing-2); color: var(--md-sys-color-on-surface-variant); }
-    ul { display: flex; flex-wrap: wrap; column-gap: var(--md-sys-spacing-6); row-gap: var(--md-sys-spacing-2); padding: 0; list-style: none; }
-    .copyright { margin-top: var(--md-sys-spacing-12); color: var(--md-sys-color-on-surface-variant); font: var(--md-sys-typescale-label-small); }
-    @media (min-width: 840px) {
-        .footer-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
-        ul { justify-content: flex-end; }
+  .site-footer {
+    padding-block: var(--md-sys-layout-section-padding) var(--md-sys-spacing-8);
+    border-top: var(--md-sys-size-border) solid
+      var(--md-sys-color-outline-variant);
+  }
+  .footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacing-6);
+  }
+  .signature a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--md-sys-size-touch-target);
+    text-decoration: none;
+  }
+  .signature p {
+    margin-top: var(--md-sys-spacing-2);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--md-sys-spacing-6);
+    row-gap: var(--md-sys-spacing-2);
+    padding: 0;
+    list-style: none;
+  }
+  .copyright {
+    margin-top: var(--md-sys-spacing-12);
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-label-small);
+  }
+  @media (min-width: 840px) {
+    .footer-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
     }
+    ul {
+      justify-content: flex-end;
+    }
+  }
 </style>
