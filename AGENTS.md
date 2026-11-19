@@ -16,6 +16,12 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Tags
+
+- Before introducing a new tag, review existing tags to ensure it has a clear scope. Reuse an existing tag when it already fits.
+- Assign tags only when a post provides enough context to meaningfully cover the topic; a passing mention is not enough.
+- When introducing a new tag, review older posts and add it wherever the content meaningfully covers the same topic.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
