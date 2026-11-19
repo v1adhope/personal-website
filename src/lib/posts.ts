@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { sentenceCase } from "text-case";
 
 export function getTagLabel(tag: string = "Interest") {
   const names: Record<string, string> = {
@@ -6,13 +7,12 @@ export function getTagLabel(tag: string = "Interest") {
     sql: "SQL",
     dns: "DNS",
     golang: "Go",
-    macos: "macOS",
+    macos: "MacOS",
     postgres: "Postgres",
     react: "React",
     obsidian: "Obsidian",
   };
-  const words = tag.replace(/([a-z0-9])([A-Z])/g, "$1 $2").toLowerCase();
-  return names[tag] ?? words.charAt(0).toUpperCase() + words.slice(1);
+  return names[tag] ?? sentenceCase(tag);
 }
 
 export function newestFirst(posts: CollectionEntry<"blog">[]) {
