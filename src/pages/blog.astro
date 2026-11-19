@@ -10,8 +10,8 @@ const years = [...new Set(posts.map((post) => post.data.pubDate.getUTCFullYear()
 const interests = getTagCounts(posts);
 ---
 
-<BaseLayout pageTitle="Blog">
-    <PageIntro eyebrow="The blog" title="Blog" count={posts.length} description="Thoughts, notes, and things I learn along the way.">
+<BaseLayout pageTitle="Posts">
+    <PageIntro eyebrow="The blog" title="Posts" count={posts.length} description="Thoughts, notes, and things I learn along the way.">
         <TextLink href="/tags/" count={interests.length}>Interests</TextLink>
     </PageIntro>
     {years.map((year, index) => (
