@@ -1,42 +1,54 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import TagList from "../components/TagList.astro";
+import TextLink from "../components/TextLink.astro";
+import { dateFormatter } from "../lib/date";
+interface Props {
+  frontmatter: CollectionEntry<"blog">["data"];
+}
 const { frontmatter } = Astro.props;
+const date = dateFormatter.format(frontmatter.pubDate);
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-    <p>
-        <em>{frontmatter.description}</em>
-    </p>
-    <p>Published on: {frontmatter.pubDate.toLocaleDateString()}</p>
-    <p>Tags: {frontmatter.tags.join(", ")}</p>
-
-    <div class="tags">
-        {frontmatter.tags.map((tag: string) => (
-            <p class="tag">
-                <a href={`/tags/${tag}`}>{tag}</a>
-            </p>
-        ))}
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
+  <article class="page-stack">
+    <PageIntro title={frontmatter.title} description={frontmatter.description}>
+      <span slot="eyebrow">
+        Post · <time datetime={frontmatter.pubDate.toISOString()}>{date}</time>
+      </span>
+      <TextLink href="/blog/">All posts</TextLink>
+    </PageIntro>
+    <div class="section">
+      <TagList tags={frontmatter.tags} />
+      <div class="prose">
+        <slot />
+      </div>
     </div>
-
-    <slot />
+    <footer class="article-footer">
+      <p>Thanks for reading.</p>
+      <TextLink href="/blog/">All posts</TextLink>
+    </footer>
+  </article>
 </BaseLayout>
 
 <style>
-    a {
-        color: #00539f;
-    }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .tag {
-        margin: 0.25em;
-        border: dotted 1px #a1a1a1;
-        border-radius: 0.5em;
-        padding: 0.5em 1em;
-        font-size: 1.15em;
-        background-color: #f8fcfd;
-    }
+  .article-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacing-4);
+    padding-block-start: var(--md-sys-spacing-8);
+    border-top: var(--md-sys-size-border) solid
+      var(--md-sys-color-outline-variant);
+  }
+  .article-footer p {
+    color: var(--md-sys-color-on-surface-variant);
+    font-style: italic;
+  }
+  .article-footer :global(.text-link) {
+    font: var(--md-sys-typescale-body-medium);
+  }
 </style>

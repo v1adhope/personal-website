@@ -1,9 +1,107 @@
 ---
+interface NavLink {
+  href: string;
+  label: string;
+  activePrefixes?: string[];
+}
+
+const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+const currentPath = normalizePath(Astro.url.pathname);
+
+const links: NavLink[] = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/about/",
+    label: "About",
+  },
+  {
+    href: "/blog/",
+    label: "Blog",
+    activePrefixes: ["/posts/"],
+  },
+  {
+    href: "/tags/",
+    label: "Tags",
+  },
+];
+
+function matchesPath(path: string): boolean {
+  const prefix = normalizePath(path);
+
+  return (
+    currentPath === prefix ||
+    (prefix !== "/" && currentPath.startsWith(`${prefix}/`))
+  );
+}
+
+function getAriaCurrent({
+  href,
+  activePrefixes = [],
+}: NavLink): "page" | "true" | undefined {
+  if (currentPath === normalizePath(href)) return "page";
+
+  return [href, ...activePrefixes].some(matchesPath) ? "true" : undefined;
+}
 ---
 
-<div id="main-menu" class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <a href="/tags/">Tags</a>
-</div>
+<nav aria-label="Main navigation">
+  <ul role="list">
+    {links.map((link) => (
+      <li>
+        <a href={link.href} aria-current={getAriaCurrent(link)}>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  nav {
+    width: 100%;
+    max-width: 100%;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--md-sys-size-touch-target);
+    padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+    border: var(--md-sys-size-border) solid transparent;
+    border-radius: var(--md-comp-navigation-container-shape);
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-body-medium);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  a:hover {
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-primary);
+  }
+  a[aria-current] {
+    border-color: var(--md-sys-color-outline);
+    background: var(--md-comp-navigation-active-container-color);
+    color: var(--md-comp-navigation-active-label-color);
+  }
+  @media (min-width: 840px) {
+    nav {
+      width: auto;
+    }
+    ul {
+      gap: var(--md-sys-spacing-1);
+    }
+  }
+</style>

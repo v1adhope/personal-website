@@ -1,19 +1,53 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPost from "../components/BlogPost.astro";
 import { getCollection } from "astro:content";
-
-const allPosts = (await getCollection("blog")).sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-);
-const pageTitle = "Blog";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import PostList from "../components/PostList.astro";
+import TextLink from "../components/TextLink.astro";
+import { getTagCounts, newestFirst } from "../lib/posts";
+const posts = newestFirst(await getCollection("blog"));
+const years = [
+  ...new Set(posts.map((post) => post.data.pubDate.getUTCFullYear())),
+];
+const interests = getTagCounts(posts);
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <p>Thoughts, notes, and things I learn along the way.</p>
-    <ul>
-        {allPosts.map((post) => (
-            <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
-        ))}
-    </ul>
+<BaseLayout pageTitle="Posts">
+  <PageIntro
+    eyebrow="The blog"
+    title="Posts"
+    count={posts.length}
+    description="Thoughts, notes, and things I learn along the way."
+  >
+    <TextLink href="/tags/" count={interests.length}>
+      Interests
+    </TextLink>
+  </PageIntro>
+  {years.map((year, index) => (
+    <section class="section" aria-labelledby={`year-${year}`}>
+      <div class="year-heading">
+        <h2 id={`year-${year}`}>{year}</h2>
+        {index === 0 && <p>Newest first</p>}
+      </div>
+      <PostList
+        posts={posts.filter(
+          (post) => post.data.pubDate.getUTCFullYear() === year,
+        )}
+        showYear={false}
+      />
+    </section>
+  ))}
 </BaseLayout>
+
+<style>
+  .year-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--md-sys-spacing-4);
+  }
+  .year-heading p {
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--md-sys-typescale-body-medium);
+  }
+</style>

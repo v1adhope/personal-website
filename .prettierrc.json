@@ -1,0 +1,19 @@
+{
+  "trailingComma": "all",
+  "objectWrap": "preserve",
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    },
+    {
+      "files": ["tsconfig.json", "tsconfig.*.json", "*.jsonc"],
+      "options": {
+        "parser": "jsonc"
+      }
+    }
+  ]
+}

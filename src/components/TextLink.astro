@@ -1,0 +1,58 @@
+---
+import Icon from "./Icon.astro";
+interface Props {
+  href: string;
+  count?: number;
+}
+const { href, count } = Astro.props;
+---
+
+<a class="text-link" href={href}>
+  <span>
+    <slot />
+  </span>
+  {count !== undefined && (
+    <span class="badge">
+      <span class="sr-only"> — </span>
+      {count}
+      <span class="sr-only"> total</span>
+    </span>
+  )}
+  <Icon name="arrow-right" />
+</a>
+
+<style>
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--md-sys-spacing-3);
+    max-width: 100%;
+    min-height: var(--md-sys-size-touch-target);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .text-link:hover > span:first-child {
+    text-decoration: underline;
+    text-underline-offset: var(--md-sys-spacing-1);
+  }
+  .text-link :global(svg) {
+    color: var(--md-sys-color-on-surface-variant);
+  }
+  .badge {
+    flex: none;
+    padding-inline: var(--md-sys-spacing-2);
+    border-radius: var(--md-sys-shape-corner-full);
+    background: var(--md-comp-badge-container-color);
+    color: var(--md-comp-badge-label-color);
+    font: var(--md-sys-typescale-label-small);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

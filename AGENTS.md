@@ -2,6 +2,7 @@
 
 - Use Astro components; do not add UI frameworks.
 - Prefer native HTML and CSS features; use JavaScript only for behavior they cannot provide.
+- Use `rem` for text and spacing, `px` for fixed details, flexible widths for layout, and unitless line heights.
 
 When starting the dev server, use background mode:
 

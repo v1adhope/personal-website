@@ -1,0 +1,214 @@
+/*
+ * Fieldnotes design tokens, following Material Design 3's tiers:
+ * reference values → semantic system roles → component roles.
+ * Text and spacing use rem; fixed details use px; line heights are unitless.
+ */
+:root {
+  /* Reference: palette and typefaces. */
+  --md-ref-palette-primary-40: #48643e;
+  --md-ref-palette-primary-90: #e0edcf;
+  --md-ref-palette-neutral-20: #293329;
+  --md-ref-palette-neutral-40: #62695d;
+  --md-ref-palette-neutral-95: #f0f3e8;
+  --md-ref-palette-neutral-99: #fbfcf7;
+  --md-ref-palette-neutral-variant-80: #d6dfca;
+  --md-ref-typeface-brand: "Roboto Serif", Georgia, serif;
+  --md-ref-typeface-plain: "Roboto Serif", Georgia, serif;
+  --md-ref-typeface-monospace: ui-monospace, "Cascadia Code", monospace;
+  --md-ref-typeface-weight-regular: 400;
+  --md-ref-typeface-weight-bold: 600;
+
+  /* System: semantic colors. */
+  --md-sys-color-primary: var(--md-ref-palette-primary-40);
+  --md-sys-color-on-primary: var(--md-ref-palette-neutral-99);
+  --md-sys-color-primary-container: var(--md-ref-palette-primary-90);
+  --md-sys-color-on-primary-container: var(--md-ref-palette-neutral-20);
+  --md-sys-color-surface: var(--md-ref-palette-neutral-99);
+  --md-sys-color-on-surface: var(--md-ref-palette-neutral-20);
+  --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-40);
+  --md-sys-color-surface-container: var(--md-ref-palette-neutral-95);
+  --md-sys-color-outline: var(--md-ref-palette-primary-40);
+  --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-80);
+
+  /* System: type roles. Unitless ratios preserve the original line heights. */
+  --md-sys-typescale-display-large-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-display-large-size: 4.75rem;
+  --md-sys-typescale-display-large-line-height: calc(23 / 19);
+  --md-sys-typescale-display-large-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-display-large: var(--md-sys-typescale-display-large-weight)
+    var(--md-sys-typescale-display-large-size) /
+    var(--md-sys-typescale-display-large-line-height)
+    var(--md-sys-typescale-display-large-font);
+  --md-sys-typescale-display-medium-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-display-medium-size: 3.75rem;
+  --md-sys-typescale-display-medium-line-height: 1.2;
+  --md-sys-typescale-display-medium-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-display-medium: var(
+      --md-sys-typescale-display-medium-weight
+    )
+    var(--md-sys-typescale-display-medium-size) /
+    var(--md-sys-typescale-display-medium-line-height)
+    var(--md-sys-typescale-display-medium-font);
+  --md-sys-typescale-display-small-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-display-small-size: 3rem;
+  --md-sys-typescale-display-small-line-height: calc(7 / 6);
+  --md-sys-typescale-display-small-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-display-small: var(--md-sys-typescale-display-small-weight)
+    var(--md-sys-typescale-display-small-size) /
+    var(--md-sys-typescale-display-small-line-height)
+    var(--md-sys-typescale-display-small-font);
+  --md-sys-typescale-headline-large-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-large-size: 2.5rem;
+  --md-sys-typescale-headline-large-line-height: 1.2;
+  --md-sys-typescale-headline-large-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-headline-large: var(
+      --md-sys-typescale-headline-large-weight
+    )
+    var(--md-sys-typescale-headline-large-size) /
+    var(--md-sys-typescale-headline-large-line-height)
+    var(--md-sys-typescale-headline-large-font);
+  --md-sys-typescale-headline-medium-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-medium-size: 2rem;
+  --md-sys-typescale-headline-medium-line-height: 1.25;
+  --md-sys-typescale-headline-medium-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-headline-medium: var(
+      --md-sys-typescale-headline-medium-weight
+    )
+    var(--md-sys-typescale-headline-medium-size) /
+    var(--md-sys-typescale-headline-medium-line-height)
+    var(--md-sys-typescale-headline-medium-font);
+  --md-sys-typescale-headline-small-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-headline-small-size: 1.5rem;
+  --md-sys-typescale-headline-small-line-height: calc(7 / 6);
+  --md-sys-typescale-headline-small-weight: var(
+    --md-ref-typeface-weight-regular
+  );
+  --md-sys-typescale-headline-small: var(
+      --md-sys-typescale-headline-small-weight
+    )
+    var(--md-sys-typescale-headline-small-size) /
+    var(--md-sys-typescale-headline-small-line-height)
+    var(--md-sys-typescale-headline-small-font);
+  --md-sys-typescale-body-large-font: var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-large-size: 1.25rem;
+  --md-sys-typescale-body-large-line-height: 1.2;
+  --md-sys-typescale-body-large-weight: var(--md-ref-typeface-weight-regular);
+  --md-sys-typescale-body-large: var(--md-sys-typescale-body-large-weight)
+    var(--md-sys-typescale-body-large-size) /
+    var(--md-sys-typescale-body-large-line-height)
+    var(--md-sys-typescale-body-large-font);
+  --md-sys-typescale-body-medium-font: var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-medium-size: 1rem;
+  --md-sys-typescale-body-medium-line-height: 1.25;
+  --md-sys-typescale-body-medium-weight: var(--md-ref-typeface-weight-regular);
+  --md-sys-typescale-body-medium: var(--md-sys-typescale-body-medium-weight)
+    var(--md-sys-typescale-body-medium-size) /
+    var(--md-sys-typescale-body-medium-line-height)
+    var(--md-sys-typescale-body-medium-font);
+  --md-sys-typescale-body-small-font: var(--md-ref-typeface-plain);
+  --md-sys-typescale-body-small-size: 0.75rem;
+  --md-sys-typescale-body-small-line-height: calc(4 / 3);
+  --md-sys-typescale-body-small-weight: var(--md-ref-typeface-weight-regular);
+  --md-sys-typescale-body-small: var(--md-sys-typescale-body-small-weight)
+    var(--md-sys-typescale-body-small-size) /
+    var(--md-sys-typescale-body-small-line-height)
+    var(--md-sys-typescale-body-small-font);
+  --md-sys-typescale-label-small-font: var(--md-ref-typeface-plain);
+  --md-sys-typescale-label-small-size: 0.75rem;
+  --md-sys-typescale-label-small-line-height: calc(4 / 3);
+  --md-sys-typescale-label-small-weight: var(--md-ref-typeface-weight-regular);
+  --md-sys-typescale-label-small: var(--md-sys-typescale-label-small-weight)
+    var(--md-sys-typescale-label-small-size) /
+    var(--md-sys-typescale-label-small-line-height)
+    var(--md-sys-typescale-label-small-font);
+
+  /* System: spacing. Project extensions using a 0.25rem unit. */
+  --md-sys-spacing-1: 0.25rem;
+  --md-sys-spacing-2: 0.5rem;
+  --md-sys-spacing-3: 0.75rem;
+  --md-sys-spacing-4: 1rem;
+  --md-sys-spacing-5: 1.25rem;
+  --md-sys-spacing-6: 1.5rem;
+  --md-sys-spacing-8: 2rem;
+  --md-sys-spacing-10: 2.5rem;
+  --md-sys-spacing-12: 3rem;
+  --md-sys-spacing-14: 3.5rem;
+  --md-sys-spacing-16: 4rem;
+
+  /* System: shape, borders, accessibility, and responsive layout. */
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-extra-large: 32px;
+  --md-sys-shape-corner-full: 9999px;
+  --md-sys-state-hover-state-layer-opacity: 8%;
+  --md-sys-state-pressed-state-layer-opacity: 12%;
+  --md-sys-state-focus-indicator-thickness: 2px;
+  --md-sys-state-focus-indicator-offset: var(--md-sys-spacing-1);
+  --md-sys-size-touch-target: 44px;
+  --md-sys-size-icon: 16px;
+  --md-sys-size-border: 1px;
+  --md-sys-layout-content-max-width: 50rem;
+  --md-sys-layout-gutter: var(--md-sys-spacing-4);
+  --md-sys-layout-section-space: var(--md-sys-spacing-8);
+  --md-sys-layout-grid-gap: var(--md-sys-spacing-4);
+
+  /* Component roles. */
+  --md-comp-navigation-container-shape: var(--md-sys-shape-corner-full);
+  --md-comp-navigation-active-container-color: var(
+    --md-sys-color-primary-container
+  );
+  --md-comp-navigation-active-label-color: var(
+    --md-sys-color-on-primary-container
+  );
+  --md-comp-filter-chip-container-color: var(--md-sys-color-surface-container);
+  --md-comp-filter-chip-container-shape: var(--md-sys-shape-corner-full);
+  --md-comp-filter-chip-label-color: var(--md-sys-color-on-surface-variant);
+  --md-comp-outlined-card-container-color: var(
+    --md-sys-color-surface-container
+  );
+  --md-comp-outlined-card-container-shape: var(
+    --md-sys-shape-corner-extra-large
+  );
+  --md-comp-outlined-card-label-color: var(--md-sys-color-primary);
+  --md-comp-badge-container-color: var(--md-sys-color-primary-container);
+  --md-comp-badge-label-color: var(--md-sys-color-primary);
+  --md-comp-post-list-date-column-width: var(--md-sys-spacing-16);
+  --md-comp-post-list-item-gap: var(--md-sys-spacing-10);
+  --md-comp-hero-headline-typography: var(--md-sys-typescale-display-small);
+  --md-comp-page-intro-headline-typography: var(
+    --md-sys-typescale-display-small
+  );
+  --md-comp-prose-line-height: var(--md-sys-typescale-body-large-line-height);
+}
+
+/* CSS custom properties cannot be used in native media query conditions.
+ * Compact: <600px; medium: 600–839px; expanded: 840–1199px;
+ * large: 1200–1599px; extra-large: ≥1600px.
+ * Window gutters: 1rem compact, 1.5rem at every larger breakpoint.
+ * The centered reading column can introduce additional whitespace.
+ * Larger classes retain expanded typography and the 50rem reading limit.
+ */
+@media (min-width: 600px) {
+  :root {
+    --md-sys-layout-gutter: var(--md-sys-spacing-6);
+    --md-sys-layout-grid-gap: var(--md-sys-spacing-6);
+    --md-comp-hero-headline-typography: var(--md-sys-typescale-display-medium);
+  }
+}
+
+@media (min-width: 840px) {
+  :root {
+    --md-sys-layout-section-space: var(--md-sys-spacing-12);
+    --md-comp-post-list-item-gap: var(--md-sys-spacing-12);
+    --md-comp-hero-headline-typography: var(--md-sys-typescale-display-large);
+  }
+}

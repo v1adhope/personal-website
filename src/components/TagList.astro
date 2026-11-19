@@ -1,0 +1,29 @@
+---
+import TagLink from "./TagLink.astro";
+import { getTagLabel } from "../lib/posts";
+interface Props {
+  tags: string[];
+}
+const { tags } = Astro.props;
+const sortedTags = tags.toSorted(
+  (a, b) => getTagLabel(a).length - getTagLabel(b).length,
+);
+---
+
+<ul class="tag-list" role="list" aria-label="Post interests">
+  {sortedTags.map((tag) => (
+    <li>
+      <TagLink tag={tag} />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--md-sys-spacing-2);
+    padding: 0;
+    list-style: none;
+  }
+</style>

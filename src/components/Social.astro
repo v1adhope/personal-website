@@ -1,14 +1,40 @@
 ---
-const { name, url } = Astro.props;
+import Icon from "./Icon.astro";
+interface Props {
+  name: string;
+  url: string;
+  icon: "file-text" | "code" | "linkedin" | "telegram" | "rss" | "mail";
+}
+const { name, url, icon } = Astro.props;
+const external = url.startsWith("https://");
 ---
 
-<a href={url}>{name}</a>
+<a href={url}>
+  <Icon name={icon} />
+  <span>{name}</span>
+  {external && <Icon name="arrow-up-right" />}
+</a>
 
 <style>
-    a {
-        padding: 0.5rem 1rem;
-        color: white;
-        background-color: #4c1d95;
-        text-decoration: none;
-    }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--md-sys-spacing-2);
+    min-height: var(--md-sys-size-touch-target);
+    max-width: 100%;
+    font: var(--md-sys-typescale-body-medium);
+    text-decoration: none;
+  }
+  span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  a:hover span {
+    text-decoration: underline;
+    text-underline-offset: var(--md-sys-spacing-1);
+  }
+  a :global(svg:last-child:not(:first-child)) {
+    width: var(--md-sys-spacing-3);
+    height: var(--md-sys-spacing-3);
+  }
 </style>

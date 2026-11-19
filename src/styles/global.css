@@ -1,86 +1,194 @@
-* {
-    vertical-align: baseline;
-    font-weight: inherit;
-    font-family: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    border: 0 none;
-    outline: 0;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+@import "./reset.css";
+@import "./fonts.css";
+@import "./tokens.css";
 
 html {
-    color-scheme: light;
-    background-color: #f1f5f9;
-    font-family: sans-serif;
+  color-scheme: light;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-ref-typeface-plain);
+  font-optical-sizing: auto;
 }
 
 body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
-    line-height: 1.5;
+  font: var(--md-sys-typescale-body-large);
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--md-ref-typeface-weight-regular);
+  overflow-wrap: anywhere;
+}
 h1 {
-    margin: 1rem 0;
-    font-size: 2.5rem;
+  font: var(--md-comp-page-intro-headline-typography);
+}
+h2,
+h3 {
+  font: var(--md-sys-typescale-headline-small);
 }
 
-/* nav styles */
-.menu {
-    background-color: #0d0950;
-    border: none;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 5px 10px;
+a {
+  color: inherit;
+  text-decoration-thickness: var(--md-sys-size-border);
+  text-underline-offset: var(--md-sys-spacing-1);
+}
+a:hover {
+  color: var(--md-sys-color-primary);
+}
+:focus-visible {
+  outline: var(--md-sys-state-focus-indicator-thickness) solid
+    var(--md-sys-color-primary);
+  outline-offset: var(--md-sys-state-focus-indicator-offset);
+}
+::selection {
+  color: var(--md-sys-color-on-primary-container);
+  background: var(--md-sys-color-primary-container);
+}
+strong,
+b {
+  font-weight: var(--md-ref-typeface-weight-bold);
 }
 
-.nav-links {
-    width: 100%;
-    display: none;
-    margin: 0;
+.site-container {
+  width: min(
+    var(--md-sys-layout-content-max-width),
+    calc(100% - 2 * var(--md-sys-layout-gutter))
+  );
+  margin-inline: auto;
 }
 
-.nav-links a {
-    display: block;
-    text-align: center;
-    padding: 10px 0;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #0d0950;
+.page-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--md-sys-layout-section-space);
 }
 
-.nav-links a:hover,
-.nav-links a:focus {
-    background-color: #ff9776;
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--md-sys-spacing-8);
+  padding-block-start: var(--md-sys-layout-section-space);
+  border-top: var(--md-sys-size-border) solid
+    var(--md-sys-color-outline-variant);
+}
+.eyebrow {
+  margin-block-end: var(--md-sys-spacing-6);
+  color: var(--md-sys-color-on-surface-variant);
+  font: var(--md-sys-typescale-body-medium);
+}
+.post-list {
+  display: grid;
+  gap: var(--md-comp-post-list-item-gap);
+  padding: 0;
+  list-style: none;
 }
 
-:has(.menu[aria-expanded="true"]) .nav-links {
-    display: unset;
+.prose {
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: var(--md-comp-prose-line-height);
+  overflow-wrap: anywhere;
+}
+.prose > * + * {
+  margin-block-start: var(--md-sys-spacing-6);
+}
+.prose > :is(h2, h3, h4) {
+  margin-block-start: var(--md-sys-spacing-12);
+  color: var(--md-sys-color-on-surface);
+}
+.prose > :first-child {
+  margin-block-start: 0;
+}
+.prose :is(ul, ol) {
+  padding-inline-start: var(--md-sys-spacing-6);
+}
+.prose li + li {
+  margin-block-start: var(--md-sys-spacing-2);
+}
+.prose li > p + p {
+  margin-block-start: var(--md-sys-spacing-4);
+}
+.prose a {
+  color: var(--md-sys-color-primary);
+}
+.prose img {
+  display: block;
+  margin-inline: auto;
+  border-radius: var(--md-sys-shape-corner-small);
+}
+.prose blockquote {
+  padding-inline: var(--md-sys-spacing-6);
+  border-inline-start: var(--md-sys-size-border) solid
+    var(--md-sys-color-outline);
+  font: var(--md-sys-typescale-headline-small);
+  color: var(--md-sys-color-primary);
+}
+.prose blockquote > * + * {
+  margin-block-start: var(--md-sys-spacing-4);
+}
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--md-sys-spacing-4);
+  border: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  font: var(--md-sys-typescale-body-medium);
+}
+.prose code {
+  font-family: var(--md-ref-typeface-monospace);
+  font-size: var(--md-sys-typescale-body-medium-size);
+}
+.prose :not(pre) > code {
+  background: var(--md-sys-color-surface-container);
+  padding-inline: var(--md-sys-spacing-1);
+  border-radius: var(--md-sys-spacing-1);
+}
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font: var(--md-sys-typescale-body-medium);
+}
+.prose :is(th, td) {
+  padding: var(--md-sys-spacing-3);
+  border: var(--md-sys-size-border) solid var(--md-sys-color-outline-variant);
+  text-align: start;
+}
+.prose th {
+  font-weight: var(--md-ref-typeface-weight-bold);
+}
+.prose hr {
+  margin-block: var(--md-sys-spacing-8);
+  border: 0;
+  border-top: var(--md-sys-size-border) solid
+    var(--md-sys-color-outline-variant);
 }
 
-@media screen and (min-width: 636px) {
-    .nav-links {
-        margin-left: 5em;
-        display: block;
-        position: static;
-        width: auto;
-        background: none;
-    }
+.skip-link {
+  position: absolute;
+  top: var(--md-sys-spacing-4);
+  left: var(--md-sys-layout-gutter);
+  z-index: 1;
+  padding: var(--md-sys-spacing-3) var(--md-sys-spacing-4);
+  background: var(--md-sys-color-primary-container);
+  transform: translateY(calc(-100% - var(--md-sys-spacing-8)));
+}
+.skip-link:focus {
+  transform: none;
+}
 
-    .nav-links a {
-        display: inline-block;
-        padding: 15px 20px;
-    }
-
-    .menu {
-        display: none;
-    }
+@media (max-width: 599px) {
+  :root {
+    --md-comp-page-intro-headline-typography: var(
+      --md-sys-typescale-headline-large
+    );
+  }
+}
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
 }
