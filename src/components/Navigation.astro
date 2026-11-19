@@ -1,21 +1,41 @@
 ---
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
-const links = [
+interface NavLink {
+    href: string;
+    label: string;
+    activePrefixes?: string[];
+}
+
+const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+const currentPath = normalizePath(Astro.url.pathname);
+
+const links: NavLink[] = [
     { href: "/", label: "Home" },
     { href: "/about/", label: "About" },
-    { href: "/blog/", label: "Blog" },
+    { href: "/blog/", label: "Blog", activePrefixes: ["/posts/"] },
     { href: "/tags/", label: "Tags" },
 ];
-const isActive = (href: string) => {
-    const path = href.replace(/\/$/, "") || "/";
-    return currentPath === path || (path === "/tags" && currentPath.startsWith("/tags/")) || (path === "/blog" && currentPath.startsWith("/posts/"));
-};
+
+function matchesPath(path: string): boolean {
+    const prefix = normalizePath(path);
+
+    return currentPath === prefix ||
+        (prefix !== "/" && currentPath.startsWith(`${prefix}/`));
+}
+
+function getAriaCurrent({
+    href,
+    activePrefixes = [],
+}: NavLink): "page" | "true" | undefined {
+    if (currentPath === normalizePath(href)) return "page";
+
+    return [href, ...activePrefixes].some(matchesPath) ? "true" : undefined;
+}
 ---
 
 <nav aria-label="Main navigation">
     <ul role="list">
-        {links.map(({ href, label }) => (
-            <li><a href={href} aria-current={isActive(href) ? (currentPath === (href.replace(/\/$/, "") || "/") ? "page" : "true") : undefined}>{label}</a></li>
+        {links.map((link) => (
+            <li><a href={link.href} aria-current={getAriaCurrent(link)}>{link.label}</a></li>
         ))}
     </ul>
 </nav>
