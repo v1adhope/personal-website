@@ -158,7 +158,7 @@
   --md-sys-size-border: 1px;
   --md-sys-layout-content-max-width: 50rem;
   --md-sys-layout-gutter: var(--md-sys-spacing-4);
-  --md-sys-layout-section-padding: var(--md-sys-spacing-8);
+  --md-sys-layout-section-space: var(--md-sys-spacing-8);
   --md-sys-layout-grid-gap: var(--md-sys-spacing-4);
 
   /* Component roles. */
@@ -206,7 +206,7 @@
 
 @media (min-width: 840px) {
   :root {
-    --md-sys-layout-section-padding: var(--md-sys-spacing-12);
+    --md-sys-layout-section-space: var(--md-sys-spacing-12);
     --md-comp-post-list-item-gap: var(--md-sys-spacing-12);
     --md-comp-hero-headline-typography: var(--md-sys-typescale-display-large);
   }

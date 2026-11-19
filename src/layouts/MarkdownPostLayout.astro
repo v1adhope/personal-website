@@ -13,14 +13,14 @@ const date = dateFormatter.format(frontmatter.pubDate);
 ---
 
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description}>
-  <article>
+  <article class="page-stack">
     <PageIntro title={frontmatter.title} description={frontmatter.description}>
       <span slot="eyebrow">
         Post · <time datetime={frontmatter.pubDate.toISOString()}>{date}</time>
       </span>
       <TextLink href="/blog/">All posts</TextLink>
     </PageIntro>
-    <div class="section article-content">
+    <div class="section">
       <TagList tags={frontmatter.tags} />
       <div class="prose">
         <slot />
@@ -34,17 +34,13 @@ const date = dateFormatter.format(frontmatter.pubDate);
 </BaseLayout>
 
 <style>
-  .article-content {
-    display: grid;
-    gap: var(--md-sys-spacing-8);
-  }
   .article-footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--md-sys-spacing-4);
-    padding-block: var(--md-sys-spacing-8) var(--md-sys-layout-section-padding);
+    padding-block-start: var(--md-sys-spacing-8);
     border-top: var(--md-sys-size-border) solid
       var(--md-sys-color-outline-variant);
   }

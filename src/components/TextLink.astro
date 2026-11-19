@@ -26,8 +26,10 @@ const { href, count } = Astro.props;
     display: inline-flex;
     align-items: center;
     gap: var(--md-sys-spacing-3);
+    max-width: 100%;
     min-height: var(--md-sys-size-touch-target);
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
   .text-link:hover > span:first-child {
     text-decoration: underline;
@@ -37,6 +39,7 @@ const { href, count } = Astro.props;
     color: var(--md-sys-color-on-surface-variant);
   }
   .badge {
+    flex: none;
     padding-inline: var(--md-sys-spacing-2);
     border-radius: var(--md-sys-shape-corner-full);
     background: var(--md-comp-badge-container-color);

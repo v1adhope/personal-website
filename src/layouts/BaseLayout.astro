@@ -41,11 +41,39 @@ const {
       Skip to content
     </a>
     <div class="site-container">
-      <Header />
-      <main id="main-content" tabindex="-1">
+      <div class="header-layout">
+        <Header />
+      </div>
+      <main id="main-content" class="page-stack" tabindex="-1">
         <slot />
       </main>
-      <Footer />
+      <div class="footer-layout">
+        <Footer />
+      </div>
     </div>
   </body>
 </html>
+
+<style>
+  .header-layout {
+    padding-block: var(--md-sys-spacing-6);
+    border-bottom: var(--md-sys-size-border) solid
+      var(--md-sys-color-outline-variant);
+  }
+  main {
+    padding-block: var(--md-sys-spacing-10) var(--md-sys-layout-section-space);
+  }
+  .footer-layout {
+    padding-block: var(--md-sys-layout-section-space) var(--md-sys-spacing-8);
+    border-top: var(--md-sys-size-border) solid
+      var(--md-sys-color-outline-variant);
+  }
+  @media (min-width: 840px) {
+    .header-layout {
+      padding-block: var(--md-sys-spacing-8);
+    }
+    main {
+      padding-block-start: var(--md-sys-spacing-16);
+    }
+  }
+</style>

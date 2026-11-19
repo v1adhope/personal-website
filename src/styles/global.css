@@ -60,8 +60,17 @@ b {
   margin-inline: auto;
 }
 
+.page-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--md-sys-layout-section-space);
+}
+
 .section {
-  padding-block: var(--md-sys-layout-section-padding);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--md-sys-spacing-8);
+  padding-block-start: var(--md-sys-layout-section-space);
   border-top: var(--md-sys-size-border) solid
     var(--md-sys-color-outline-variant);
 }

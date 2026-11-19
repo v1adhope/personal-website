@@ -14,25 +14,25 @@ import Navigation from "./Navigation.astro";
     display: flex;
     flex-direction: column;
     gap: var(--md-sys-spacing-4);
-    padding-block: var(--md-sys-spacing-6);
-    border-bottom: var(--md-sys-size-border) solid
-      var(--md-sys-color-outline-variant);
   }
   .site-name {
     align-self: flex-start;
     display: inline-flex;
     align-items: center;
+    min-width: 0;
+    max-width: 100%;
     min-height: var(--md-sys-size-touch-target);
     font: var(--md-sys-typescale-body-large);
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
   @media (min-width: 840px) {
     .site-header {
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: var(--md-sys-spacing-6);
-      padding-block: var(--md-sys-spacing-8);
     }
   }
 </style>

@@ -28,7 +28,7 @@ const { eyebrow, title, description, count } = Astro.props;
 
 <style>
   .page-intro {
-    padding-block: var(--md-sys-spacing-10) var(--md-sys-spacing-8);
+    overflow-wrap: anywhere;
   }
   .eyebrow {
     margin-block-end: var(--md-sys-spacing-6);
@@ -52,10 +52,5 @@ const { eyebrow, title, description, count } = Astro.props;
   .intro-action {
     margin-block-start: var(--md-sys-spacing-8);
     font: var(--md-sys-typescale-body-medium);
-  }
-  @media (min-width: 840px) {
-    .page-intro {
-      padding-block: var(--md-sys-spacing-16) var(--md-sys-spacing-12);
-    }
   }
 </style>

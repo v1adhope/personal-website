@@ -62,6 +62,8 @@ The [Material breakpoint guidance](https://m3.material.io/foundations/layout/bre
 
 The centered reading column is capped at 800px, adding whitespace on wider screens. The large and extra-large classes intentionally retain the expanded reading layout. Media query conditions use literal pixel values because native CSS does not support custom properties in those conditions.
 
+Layouts own screen gutters and spacing between components. `BaseLayout` supplies header and footer insets and the main content's outer padding. The shared `.page-stack` layout uses `--md-sys-layout-section-space` for the gap between page regions; `.section` owns its divider inset and the gap between a heading and its content. `MarkdownPostLayout` uses the same stack for article regions. Reusable components such as `PageIntro`, `SectionHeading`, `Header`, and `Footer` have no outer spacing. Components retain internal gaps and control padding, including chip and card insets and touch targets.
+
 Compact layouts put navigation below the site name and dates above post titles. The home headline uses 48/56px, switching to 60/72px at medium and 76/92px at expanded. Page titles use 40/48px on compact and 48/56px on larger screens. Post dates move into a separate column at medium, and header navigation moves alongside the site name at expanded. Interest grids use two columns when space allows and collapse intrinsically on very narrow screens.
 
 ## Reusable components
