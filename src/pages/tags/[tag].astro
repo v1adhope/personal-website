@@ -1,22 +1,21 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageIntro from "../../components/PageIntro.astro";
 import PostList from "../../components/PostList.astro";
 import TextLink from "../../components/TextLink.astro";
-import { getTagCounts, getTagLabel, newestFirst } from "../../lib/posts";
+import {
+  getTagCounts,
+  getTagLabel,
+  getPosts,
+  newestFirst,
+} from "../../lib/posts";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
-  return getTagCounts(allPosts).map(({ tag }) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag),
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
+  const posts = await getPosts();
+  return getTagCounts(posts).map(({ tag }) => ({
+    params: { tag },
+    props: { posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
 }
 
 const { tag } = Astro.params;

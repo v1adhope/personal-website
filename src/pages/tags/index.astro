@@ -1,11 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageIntro from "../../components/PageIntro.astro";
 import TagGrid from "../../components/TagGrid.astro";
 import TextLink from "../../components/TextLink.astro";
-import { getTagCounts } from "../../lib/posts";
-const posts = await getCollection("blog");
+import { getTagCounts, getPosts } from "../../lib/posts";
+const posts = await getPosts();
 const interests = getTagCounts(posts);
 ---
 

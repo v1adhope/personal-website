@@ -1,11 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import PostList from "../components/PostList.astro";
 import TextLink from "../components/TextLink.astro";
-import { getTagCounts, newestFirst } from "../lib/posts";
-const posts = newestFirst(await getCollection("blog"));
+import { getTagCounts, getPosts, newestFirst } from "../lib/posts";
+const posts = newestFirst(await getPosts());
 const years = [
   ...new Set(posts.map((post) => post.data.pubDate.getUTCFullYear())),
 ];

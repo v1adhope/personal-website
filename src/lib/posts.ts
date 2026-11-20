@@ -1,5 +1,9 @@
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { sentenceCase } from "text-case";
+
+export function getPosts() {
+  return getCollection("blog", ({ data }) => !data.hidden);
+}
 
 export function getTagLabel(tag: string = "Interest") {
   const names: Record<string, string> = {
