@@ -84,3 +84,5 @@ Compact layouts put navigation below the site name and dates above post titles. 
 `BaseLayout` supplies the shared shell, metadata, font preload, RSS discovery, and skip link. `MarkdownPostLayout` supplies article metadata, tags, prose styling, and archive links. Content queries and label formatting run during Astro rendering; no scripts are sent to the browser. Reading times are omitted. RSS and Email have their own icons and no arrow.
 
 Keyboard focus remains visible, links use semantic HTML, long text wraps, and code blocks and tables can scroll within the reading column.
+
+Post links use the primary color and a permanent underline with the shared border thickness and underline spacing. On hover, the prose link color token mixes the on-surface color into primary using the shared hover opacity, and the underline uses the thick border token. Keyboard focus uses the shared focus indicator thickness and offset.

@@ -112,6 +112,11 @@ b {
 }
 .prose a {
   color: var(--md-sys-color-primary);
+  text-decoration-line: underline;
+}
+.prose a:hover {
+  color: var(--md-comp-prose-link-hover-color);
+  text-decoration-thickness: var(--md-sys-size-border-thick);
 }
 .prose img {
   display: block;
