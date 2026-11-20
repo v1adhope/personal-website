@@ -8,10 +8,10 @@ on Cloudflare Workers.
 
 Posts live in `src/blog/`. Set these fields in each Markdown file's frontmatter:
 
-| Field         | Value                                                                                                       |
-| ------------- | ----------------------------------------------------------------------------------------------------------- |
-| `title`       | Post title (string).                                                                                        |
-| `pubDate`     | Publication date (`YYYY-MM-DD`).                                                                            |
-| `description` | Short summary (string).                                                                                     |
-| `tags`        | Topic tags (array of strings). Reuse existing tags when they fit.                                           |
-| `hidden`      | Optional boolean, defaults to `false`. Set to `true` to exclude the post from pages, tags, counts, and RSS. |
+| Field         | Value                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------- |
+| `title`       | Post title (string).                                                                    |
+| `pubDate`     | Publication date (`YYYY-MM-DD`).                                                        |
+| `description` | Short summary (string).                                                                 |
+| `tags`        | Topic tags (array of strings).                                                          |
+| `hidden`      | Optional boolean, defaults to `false`. Set to `true` to exclude the post from the site. |
